@@ -5,7 +5,7 @@ This is a simple AWS Data Pipeline MVP designed to orchestrate the creation of c
 
 ## File structure
 
-```bash
+```zsh
 aws-data-pipeline-mvp/
 ├── backend-setup/             # Directory for backend resources setup
 │   ├── main.tf                # Terraform config to create S3 bucket and DynamoDB table
@@ -25,72 +25,67 @@ aws-data-pipeline-mvp/
 
 # Deploy Stack:
 
-```bash
+### Deploy Full Stack (Default):
+
+```zsh
 ./scripts/deploy.sh
-Starting full deployment of AWS Data Pipeline MVP...
-.
-.
-.
-Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+```
 
-Outputs:
+### Deploy Only backend-setup Directory:
 
-backend_bucket = "mvp-state-bucket"
-backend_dynamodb_table = "mvp-state-lock-table"
-.
-.
-.
-Apply complete! Resources: 50 added, 0 changed, 0 destroyed.
+```zsh
+./scripts/deploy.sh --dir backend-setup
+```
 
-Outputs:
+### Dry Run for Full Stack:
 
-eks_cluster_endpoint = "https://7F88B317F7275D0FB3A3A9BB41EFED0B.gr7.us-east-1.eks.amazonaws.com"
-kafka_cluster_brokers = "b-1.mvpkafkacluster.pi2k02.c22.kafka.us-east-1.amazonaws.com:9094,b-2.mvpkafkacluster.pi2k02.c22.kafka.us-east-1.amazonaws.com:9094"
-s3_bucket_name = "mvp-data-lake-bucket"
-security_group_id = "sg-0531926b6955907db"
-subnet_cidr_blocks = [
-  "10.0.1.0/24",
-  "10.0.2.0/24",
-]
-subnet_ids = [
-  "subnet-0baf5dc4dcc60b9ab",
-  "subnet-0816d9def23ff23a3",
-]
-vpc_id = "vpc-0cba48a69c6be50ef"
-.
-.
-.
-Deployment of AWS Data Pipeline MVP completed successfully.
+```zsh
+./scripts/deploy.sh --dry-run
+```
+
+### Dry Run for Specific Directory:
+
+```zsh
+./scripts/deploy.sh --dry-run --dir main
 ```
 
 # Destroy stack
 
-```bash
-./scripts/deploy.sh
-Starting teardown of AWS Data Pipeline MVP...
-.
-.
-.
-Teardown complete.
+### Destroy Full Stack (Default):
+
+```zsh
+./scripts/destroy.sh
+```
+
+### Destroy Only backend-setup Directory:
+
+```zsh
+./scripts/destroy.sh --dir backend-setup
+```
+
+### Destroy Only main Directory:
+
+```zsh
+./scripts/destroy.sh --dir main
 ```
 
 # Troubleshooting
 
 ### List Node Groups for the Cluster
 
-```bash
+```zsh
 aws eks list-nodegroups --cluster-name mvp-eks-cluster
 ```
 
 ### If the Node Group exists, describe its details:
 
-```bash
+```zsh
 aws eks describe-nodegroup --cluster-name mvp-eks-cluster --nodegroup-name default
 ```
 
 ### Show Terraform State for the Node Group
 
-```bash
+```zsh
 terraform state show module.eks.aws_eks_node_group.this
 ```
 
@@ -98,13 +93,13 @@ terraform state show module.eks.aws_eks_node_group.this
 
 **Look for the status and health fields in the response. For example:**
 
-```bash
+```zsh
 aws eks describe-nodegroup --cluster-name mvp-eks-cluster --nodegroup-name default-20241123033151055300000012
 aws eks describe-nodegroup --cluster-name mvp-eks-cluster --nodegroup-name default-20241123042207995800000002
 ```
 
 ### Investigate Instances in the Node Group
 
-```bash
+```zsh
 aws ec2 describe-instances --instance-ids i-040f6dd3697221480
 ```

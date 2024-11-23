@@ -1,5 +1,6 @@
-backend-setup/.terraform.lock.hcl
+*.backup
+*.log
+.terraform.*
 .terraform
 tfplan
-terraform.tfstate 
-*.backup
+terraform.tfstate
