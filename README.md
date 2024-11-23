@@ -79,6 +79,13 @@ aws-data-pipeline-mvp/
 ./scripts/destroy.sh --dir main
 ```
 
+# Sample Outputs
+
+	•	EKS Cluster Endpoint: Kubernetes API for managing workloads.
+	•	Kafka Brokers: Endpoints for streaming data.
+	•	S3 Bucket: Data lake for scalable storage.
+	•	Networking: Subnet IDs, CIDR blocks, and VPC ID.
+
 # Troubleshooting
 
 ### List Node Groups for the Cluster
