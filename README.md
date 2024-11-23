@@ -2,6 +2,16 @@
 
 This is a simple AWS Data Pipeline MVP designed to orchestrate the creation of cloud infrastructure for managing and processing data efficiently. It is built with Terraform and focuses on deploying ephemeral and reusable cloud resources using a modular architecture.
 
+## Key Features
+
+	•	Infrastructure as Code (IaC): Automates the provisioning of resources using Terraform for repeatable and reliable deployments.
+	•	Ephemeral Stack: Supports easy deployment and teardown for testing or temporary usage.
+	•	AWS Managed Services:
+	  -	Amazon EKS: Kubernetes cluster for running containerized workloads.
+	  -	Amazon MSK: Managed Kafka for data streaming.
+	  -	Amazon S3: Data lake for scalable storage.
+	  -	DynamoDB: State locking for Terraform backend.
+
 
 ## File structure
 
